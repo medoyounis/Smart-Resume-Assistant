@@ -53,8 +53,8 @@ submit3 = st.button("How Can I Improve my Skills")
 submit4 = st.button("Percentage Match between the Resume and the Job Description")
 submit5 = st.button("Write a Cover Letter for this job")
 submit6 = st.button("Ask me an Interview Question Using this Job Description?")
-submit7 = st.button("Does the Resume Contain Any Grammatical or Spelling Errors? or any formatting issues")
-submit8 = st.button("Overall Check for Match Percentage and Missing Keywords")
+submit7 = st.button("Does the Resume Contain Any Grammatical or Spelling Errors? or any formatting issues?")
+submit8 = st.button("Overall Check for the Match Percentage and Missing Keywords")
 Additional=st.text_input("Additional Questions?")
 
 input_prompt1 = """

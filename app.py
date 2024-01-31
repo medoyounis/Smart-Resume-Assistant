@@ -55,7 +55,7 @@ submit5 = st.button("Write a Cover Letter for this job")
 submit6 = st.button("Ask me an Interview Question Using this Job Description?")
 submit7 = st.button("Does the Resume Contain Any Grammatical or Spelling Errors? or any formatting issues")
 Additional=st.text_input("Additional Questions?")
-
+submit8 = st.button("Overall Check for Match Percentage and Missing Keywords")
 input_prompt1 = """
  You are an experienced Technical Human Resource Manager,your task is to review the provided resume against the job description. 
   Please share your professional evaluation on whether the candidate's profile aligns with the role. 
@@ -87,6 +87,21 @@ You are an experienced Technical Human Resource Manager,your task is to review t
 input_prompt7= """
 You are an experienced Technical Human Resource Manager,your task is to review the provided resume and check if the resume contains any grammatical or spelling errors, or formatting issues.
 """
+input_prompt8="""
+Hey Act Like a skilled or very experience ATS(Application Tracking System)
+with a deep understanding of tech field,software engineering,data science ,data analyst
+and big data engineer. Your task is to evaluate the resume based on the given job description.
+You must consider the job market is very competitive and you should provide 
+best assistance for improving thr resumes. Assign the percentage Matching based 
+on Jd and
+the missing keywords with high accuracy
+resume:{text}
+description:{jd}
+
+I want the response in one single string having the structure
+{{"JD Match":"%","MissingKeywords:[]","Profile Summary":""}}
+"""
+
 
 if submit1:
     if uploaded_file is not None:
@@ -148,6 +163,14 @@ elif Additional:
     if uploaded_file is not None:
         pdf_content=input_pdf_setup(uploaded_file)
         response=get_gemini_response(Additional,pdf_content,input_text)
+        st.subheader("The Repsonse is")
+        st.write(response)
+    else:
+        st.write("Please upload the resume")
+elif submit8:
+    if uploaded_file is not None:
+        pdf_content=input_pdf_setup(uploaded_file)
+        response=get_gemini_response(input_prompt8,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
     else:

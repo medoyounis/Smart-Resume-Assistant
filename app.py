@@ -48,14 +48,15 @@ uploaded_file=st.file_uploader("Upload your resume in PDF Format", type=["pdf"])
 if uploaded_file is not None:
     st.write("PDF was uploaded successfully")
 submit1=st.button("Tell Me About the Resume")
-submit2=st.button("What are the Keywords for this Job")
+submit2=st.button("What are All the Keywords for this Job")
 submit3 = st.button("How Can I Improve my Skills")
 submit4 = st.button("Percentage Match between the Resume and the Job Description")
 submit5 = st.button("Write a Cover Letter for this job")
 submit6 = st.button("Ask me an Interview Question Using this Job Description?")
 submit7 = st.button("Does the Resume Contain Any Grammatical or Spelling Errors? or any formatting issues")
-Additional=st.text_input("Additional Questions?")
 submit8 = st.button("Overall Check for Match Percentage and Missing Keywords")
+Additional=st.text_input("Additional Questions?")
+
 input_prompt1 = """
  You are an experienced Technical Human Resource Manager,your task is to review the provided resume against the job description. 
   Please share your professional evaluation on whether the candidate's profile aligns with the role. 

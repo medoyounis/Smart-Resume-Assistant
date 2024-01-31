@@ -11,6 +11,8 @@ import io
 from PIL import Image 
 import pdf2image
 import google.generativeai as genai
+import pyttsx3
+engine = pyttsx3.init()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def get_gemini_response(input,pdf_content,prompt):
@@ -47,6 +49,7 @@ input_text=st.text_area("Job Description:",key="input")
 uploaded_file=st.file_uploader("Upload your resume in PDF Format", type=["pdf"])
 if uploaded_file is not None:
     st.write("PDF was uploaded successfully")
+on = st.toggle('Activate Text to Speech')
 submit1=st.button("Tell Me About the Resume")
 submit2=st.button("What are All the Keywords for this Job")
 submit3 = st.button("How Can I Improve my Skills")
@@ -110,6 +113,9 @@ if submit1:
         response=get_gemini_response(input_prompt1,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit2:
@@ -118,6 +124,9 @@ elif submit2:
         response=get_gemini_response(input_prompt2,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit3:
@@ -126,6 +135,9 @@ elif submit3:
         response=get_gemini_response(input_prompt3,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit4:
@@ -134,6 +146,9 @@ elif submit4:
         response=get_gemini_response(input_prompt4,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit5:
@@ -142,6 +157,9 @@ elif submit5:
         response=get_gemini_response(input_prompt5,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit6:
@@ -150,6 +168,9 @@ elif submit6:
         response=get_gemini_response(input_prompt6,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit7:
@@ -158,6 +179,9 @@ elif submit7:
         response=get_gemini_response(input_prompt7,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif Additional:
@@ -166,6 +190,9 @@ elif Additional:
         response=get_gemini_response(Additional,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")
 elif submit8:
@@ -174,5 +201,8 @@ elif submit8:
         response=get_gemini_response(input_prompt8,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
+        if on:
+            engine.say(response)
+            engine.runAndWait()
     else:
         st.write("Please upload the resume")

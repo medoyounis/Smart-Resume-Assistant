@@ -50,14 +50,14 @@ uploaded_file=st.file_uploader("Upload your resume in PDF Format", type=["pdf"])
 if uploaded_file is not None:
     st.write("PDF was uploaded successfully")
 on = st.toggle('Activate Text to Speech')
-submit1=st.button("Tell Me About the Resume")
-submit2=st.button("What are All the Keywords for this Job")
-submit3 = st.button("How Can I Improve my Skills")
-submit4 = st.button("Percentage Match between the Resume and the Job Description")
-submit5 = st.button("Write a Cover Letter for this job")
-submit6 = st.button("Ask me an Interview Question Using this Job Description?")
-submit7 = st.button("Does the Resume Contain Any Grammatical or Spelling Errors? or any formatting issues?")
-submit8 = st.button("Overall Check for the Match Percentage and Missing Keywords")
+submit1=st.button("Tell me about the resume")
+submit2=st.button("What are all the keywords for this job and which ones are missing")
+submit3 = st.button("How can I improve my resume")
+submit4 = st.button("Write a cover letter for this job")
+submit5 = st.button("Ask me an interview question using this job description?")
+submit6 = st.button("Does the resume contain any grammatical or spelling errors? or any formatting issues?")
+submit7=st.button("How to standout?")
+submit8=st.button("How to tailor this resume better?")
 Additional=st.text_input("Additional Questions?")
 
 input_prompt1 = """
@@ -66,32 +66,14 @@ input_prompt1 = """
  Highlight the strengths and weaknesses of the applicant in relation to the specified job requirements.
 """
 input_prompt2 = """
- You are an experienced Technical Human Resource Manager,your task is to review the provided job description. 
-  Please share the keywords that are in this job description.
+Hey Act Like a skilled or very experience ATS(Application Tracking System)
+with a deep understanding of tech field,what are all the keywords for this job, and which ones are missing from the resume?
+what is the percentage for the match between the resume and the job description?
+
 """
 input_prompt3 = """
- You are an experienced Technical Human Resource Manager,your task is to review the provided resume against the job description. 
-  Please share your professional evaluation on how the candidate can improve his resume to make it more suitable for the job requirements.
-"""
-
-input_prompt4 = """
-You are an skilled ATS (Applicant Tracking System) scanner with a deep understanding of data science and ATS functionality, 
-your task is to evaluate the resume against the provided job description. give me the percentage of match if the resume matches
-the job description. First the output should come as percentage and then keywords missing and last final thoughts.
-"""
-
-input_prompt5 = """
-You are an experienced Technical Human Resource Manager,your task is to review the provided resume and the job description. 
-  Please write a cover letter for this job using the provided resume.
-"""
-input_prompt6= """
-You are an experienced Technical Human Resource Manager,your task is to review the provided resume and the job description. 
-  Please ask me interview question using both the job description and the provided resume?
-"""
-input_prompt7= """
-You are an experienced Technical Human Resource Manager,your task is to review the provided resume and check if the resume contains any grammatical or spelling errors, or formatting issues.
-"""
-input_prompt8="""
+#  You are an experienced Technical Human Resource Manager,your task is to review the provided resume against the job description. 
+#   Please share your professional evaluation on how the candidate can improve his resume to make it more suitable for the job requirements.
 Hey Act Like a skilled or very experience ATS(Application Tracking System)
 with a deep understanding of tech field,software engineering,data science ,data analyst
 and big data engineer. Your task is to evaluate the resume based on the given job description.
@@ -99,13 +81,31 @@ You must consider the job market is very competitive and you should provide
 best assistance for improving thr resumes. Assign the percentage Matching based 
 on Jd and
 the missing keywords with high accuracy
-resume:{text}
-description:{jd}
-
-I want the response in one single string having the structure
-{{"JD Match":"%","MissingKeywords:[]","Profile Summary":""}}
 """
 
+
+input_prompt4 = """
+You are an experienced Technical Human Resource Manager,your task is to review the provided resume and the job description. 
+  Please write a cover letter for this job using the provided resume.
+"""
+input_prompt5= """
+You are an experienced Technical Human Resource Manager,your task is to review the provided resume and the job description. 
+  Please ask me interview question using both the job description and the provided resume?
+"""
+input_prompt6= """
+You are an experienced Technical Human Resource Manager,your task is to review the provided resume and check if the resume contains any grammatical or spelling errors, typos, or formatting issues.
+"""
+input_prompt7 = """
+Hey Act Like a skilled or very experience ATS(Application Tracking System)
+with a deep understanding of tech field,software engineering,data science ,data analyst
+and big data engineer. using the resume and job description, how can the candidate standout.
+"""
+input_prompt8 = """
+Hey Act Like a skilled or very experience ATS(Application Tracking System)
+with a deep understanding of tech field,software engineering,data science ,data analyst
+and big data engineer. after you read the resume and the job description, is it possible to rewrite some of the bullet points that are in the resume to make them more suitable to what the hiring company wants in the ideal candidate.
+make sure to only rewrite bulletpoints that are in the resume to make them more suitable for this job. do not write anything that is not in the resume.
+"""
 
 if submit1:
     if uploaded_file is not None:
@@ -184,10 +184,10 @@ elif submit7:
             engine.runAndWait()
     else:
         st.write("Please upload the resume")
-elif Additional:
+elif submit8:
     if uploaded_file is not None:
         pdf_content=input_pdf_setup(uploaded_file)
-        response=get_gemini_response(Additional,pdf_content,input_text)
+        response=get_gemini_response(input_prompt8,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
         if on:
@@ -195,10 +195,10 @@ elif Additional:
             engine.runAndWait()
     else:
         st.write("Please upload the resume")
-elif submit8:
+elif Additional:
     if uploaded_file is not None:
         pdf_content=input_pdf_setup(uploaded_file)
-        response=get_gemini_response(input_prompt8,pdf_content,input_text)
+        response=get_gemini_response(Additional,pdf_content,input_text)
         st.subheader("The Repsonse is")
         st.write(response)
         if on:
